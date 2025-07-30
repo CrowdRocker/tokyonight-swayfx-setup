@@ -15,7 +15,7 @@
 
 ## 📸 Screenshots
 
-> Add your screenshots here once you test the setup!
+> Screen shots coming soon!
 
 ## ✨ Features
 
