@@ -1,5 +1,4 @@
-README.md
-markdown# 🌃 TokyoNight Cyberpunk SwayFX Setup
+# 🌃 TokyoNight Cyberpunk SwayFX Setup
 
 <div align="center">
 
@@ -62,6 +61,8 @@ markdown# 🌃 TokyoNight Cyberpunk SwayFX Setup
 | **Terminal** | Alacritty | GPU-accelerated terminal |
 | **File Manager** | Thunar | Lightweight file browser |
 | **App Launcher** | nwg-drawer | Grid-style app launcher |
+| **Theme Manager** | nwg-look | GTK theme configuration |
+| **Wallpaper Manager** | Azote | Advanced wallpaper selector |
 | **Login Manager** | SDDM | Display manager with theming |
 | **Audio** | PipeWire | Low-latency audio system |
 | **Notifications** | Dunst | Lightweight notification daemon |
@@ -89,7 +90,7 @@ markdown# 🌃 TokyoNight Cyberpunk SwayFX Setup
 
 ### **Automated Installation**
 ```bash
-git clone https://github.com/CrowdRocker/tokyonight-swayfx-setup.git
+git clone https://github.com/yourusername/tokyonight-swayfx-setup.git
 cd tokyonight-swayfx-setup
 chmod +x install.sh
 ./install.sh
@@ -97,9 +98,11 @@ chmod +x install.sh
 
 Manual Installation
 See Manual Installation Guide below.
+
 📋 Manual Installation
+
 1. Install Base Packages
-SwayFX and core components
+# SwayFX and core components
 yay -S swayfx
 sudo pacman -S swayidle swaylock-effects swaybg waybar wofi dunst grim slurp wl-clipboard
 
@@ -113,12 +116,12 @@ sudo pacman -S thunar alacritty firefox
 sudo pacman -S sddm
 
 # Additional tools
-yay -S eww nwg-dock nwg-drawer
+yay -S eww nwg-dock nwg-drawer nwg-look azote
 sudo pacman -S btop neofetch starship playerctl
 yay -S spotify
 
 2. AMD Gaming Optimizations
-AMD drivers and Vulkan
+# AMD drivers and Vulkan
 sudo pacman -S mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon
 
 # Gaming performance
@@ -131,8 +134,7 @@ yay -S linux-zen linux-zen-headers
 sudo pacman -S zram-generator
 
 3. Copy Configuration Files
-Create config directories
-
+# Create config directories
 mkdir -p ~/.config/{sway,waybar,eww,alacritty}
 mkdir -p ~/scripts ~/Pictures
 
@@ -152,7 +154,7 @@ cp wallpapers/* ~/Pictures/
 
 4. Enable Services
 
-Enable display manager
+# Enable display manager
 sudo systemctl enable sddm
 
 # Enable Zram
@@ -163,14 +165,14 @@ systemctl --user enable pipewire pipewire-pulse
 
 5. Configure SDDM Theme
 
-Install SugarCandy theme
+# Install SugarCandy theme
 yay -S sddm-sugar-candy-git
 
 # Apply theme (run as root)
 sudo cp configs/sddm.conf /etc/sddm.conf
 
 6. Reboot and Select SwayFX
-bashsudo reboot
+sudo reboot
 
 ⌨️ Default Keybindings
 System
@@ -185,6 +187,8 @@ Super + E     File manager
 Super + B     Browser
 Super + G     Game launcher
 Super + K     Show keybinds
+Super + T     Theme manager (nwg-look)
+Super + W     Wallpaper manager (Azote)
 
 Window Management
 Super + Arrow Keys       Move focus
@@ -211,19 +215,50 @@ Zram: Better memory management
 Effect toggling: Disables blur/shadows during gaming
 
 Launching Games
-With all optimizations
+# With all optimizations
 ~/scripts/game-launch.sh <game-command>
 
 # Or use the EWW game launcher (Super + G)
-Supported Game Platforms
 
 ✅ Steam (Native + Proton)
 ✅ Lutris (Wine/DXVK games)
 ✅ Heroic (Epic Games Store)
 ✅ Native Linux games
 
-🎨 Customization
-Colors
+🎨 Theming and Customization
+nwg-look - GTK Theme Manager
+Launch with Super + T to configure:
+
+GTK themes - Apply consistent theming across applications
+Icon themes - Customize application icons
+Cursor themes - Match cursor with cyberpunk aesthetic
+Font settings - Configure system fonts
+
+Recommended TokyoNight GTK themes:
+# Install TokyoNight GTK theme
+yay -S tokyonight-gtk-theme-git
+
+# Install matching icon theme
+yay -S papirus-icon-theme
+
+
+Azote - Wallpaper Manager
+
+Launch with Super + W for advanced wallpaper management:
+
+Multi-monitor support - Different wallpapers per monitor
+Wallpaper rotation - Automatic wallpaper changing
+Color extraction - Generate color schemes from wallpapers
+Preview mode - Live wallpaper preview
+
+Features:
+
+Supports all image formats (JPG, PNG, WEBP, etc.)
+Can generate complementary color palettes
+Integrates with SwayFX wallpaper system
+Backup and restore wallpaper configurations
+
+Color Scheme Customization
 Edit the TokyoNight colors in:
 
 ~/.config/sway/config (window borders, etc.)
@@ -233,13 +268,15 @@ Edit the TokyoNight colors in:
 
 Effects
 Adjust performance vs visuals in ~/.config/sway/config:
-Reduce for better performance
+
+# Reduce for better performance
 blur_passes 1
 blur_radius 2
 
 # Or disable completely
 blur disable
 shadows disable
+
 Widgets
 Customize EWW widgets in ~/.config/eww/eww.yuck
 
@@ -248,7 +285,7 @@ Customize EWW widgets in ~/.config/eww/eww.yuck
 Common Issues
 
 1. SwayFX won't start
-Check logs
+# Check logs
 journalctl --user -u sway
 
 # Try starting manually
@@ -280,14 +317,15 @@ Performance Tuning
 For older hardware, try these optimizations:
 
 Disable expensive effects:
-In ~/.config/sway/config
+# In ~/.config/sway/config
 blur disable
 shadows disable
 default_dim_inactive 0.0
 
 Reduce Waybar updates:
-In ~/.config/waybar/config
+# In ~/.config/waybar/config
 "interval": 5  # Instead of 1-2 seconds
+
 
 📝 Contributing
 Feel free to contribute improvements, bug fixes, or new features!
@@ -325,9 +363,11 @@ Reddit: r/unixporn, r/swaywm
 Discord: Sway/SwayFX community servers
 
 
-
+<div align="center">
 ⭐ If you found this helpful, please consider starring the repository! ⭐
 Made with 💜 for the Linux ricing community
+</div>
+```
 
 ```
 
