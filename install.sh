@@ -2,7 +2,7 @@
 
 # TokyoNight Cyberpunk SwayFX Setup - Automated Installer
 # Optimized for Intel i5-4430 + AMD RX 580 and similar hardware
-# Author: [Your Name]
+# Author: Matt
 # License: MIT
 
 set -e  # Exit on any error
