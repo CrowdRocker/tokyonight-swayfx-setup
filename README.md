@@ -90,7 +90,7 @@
 
 ### **Automated Installation**
 ```bash
-git clone https://github.com/yourusername/tokyonight-swayfx-setup.git
+git clone https://github.com/CrowdRocker/tokyonight-swayfx-setup.git
 cd tokyonight-swayfx-setup
 chmod +x install.sh
 ./install.sh
