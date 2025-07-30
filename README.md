@@ -67,6 +67,52 @@
 | **Audio** | PipeWire | Low-latency audio system |
 | **Notifications** | Dunst | Lightweight notification daemon |
 
+## ⌨️ **Default System Keybindings**
+
+| Component |   Keybind   |
+|-----------|-------------|
+| **Terminal** | Super + Return | 
+| **Close window** | Super + Q |
+| **Exit SwayFX** | Super + Shift + E |
+| **Reload config** | Super + Shift + C |
+
+## ⌨️ **Default Applications Keybindings**
+
+| Component |   Keybind   |
+|-----------|-------------|
+| **App launcher** | Super + D |
+| **File manager** | Super + E |
+| **Browser** | Super + B |
+| **Game launcher** | Super + G |
+| **Show keybinds** | Super + K |
+| **Theme manager (nwg-look)** | Super + T |
+| **Wallpaper manager (Azote)** | Super + W |
+
+## ⌨️ **Default Window Management Keybindings**
+
+| Component |   Keybind   |
+|-----------|-------------|
+| **Move focus** | Super + Arrow Keys  |
+| **Move windows** | Super + Shift + Arrows |
+| **Fullscreen** | Super + F |
+| **Focus toggle** | Super + Space |
+| **Float toggle** | Super + Shift + Space |
+| **App Launcher** | nwg-drawer |
+| **Theme Manager** | nwg-look |
+| **Wallpaper Manager** | Azote | Advanced wallpaper selector |
+| **Login Manager** | SDDM | Display manager with theming |
+| **Audio** | PipeWire | Low-latency audio system |
+| **Notifications** | Dunst | Lightweight notification daemon |
+
+## ⌨️ **Default Gaming Keybindings**
+
+| Component |   Keybind   |
+|-----------|-------------|
+| **Toggle fullscreen** | Super + F11  |
+| **Launch with GameMode** | Super + Alt + G |
+| **Screenshot selection** | Print |
+| **Full screenshot** | Super + Print |
+
 ## 🎯 **System Requirements**
 
 ### **Minimum**
@@ -173,35 +219,6 @@ sudo cp configs/sddm.conf /etc/sddm.conf
 
 6. Reboot and Select SwayFX
 sudo reboot
-
-⌨️ Default Keybindings
-System
-Super + Return      Terminal
-Super + Shift + Q   Close window
-Super + Shift + E   Exit SwayFX
-Super + Shift + C   Reload config
-
-Applications
-Super + D     App launcher
-Super + E     File manager 
-Super + B     Browser
-Super + G     Game launcher
-Super + K     Show keybinds
-Super + T     Theme manager (nwg-look)
-Super + W     Wallpaper manager (Azote)
-
-Window Management
-Super + Arrow Keys       Move focus
-Super + Shift + Arrows   Move windows
-Super + F                Fullscreen
-Super + Space            Focus toggle
-Super + Shift + Space    Float toggle
-
-Gaming
-Super + F11       Toggle fullscreen
-Super + Alt + G   Launch with GameMode
-Print             Screenshot selection
-Super + Print     Full screenshot
 
 
 🎮 Gaming Setup
@@ -363,12 +380,10 @@ Reddit: r/unixporn, r/swaywm
 Discord: Sway/SwayFX community servers
 
 
-<div align="center">
+```
 ⭐ If you found this helpful, please consider starring the repository! ⭐
 Made with 💜 for the Linux ricing community
 </div>
-```
-
 ```
 
 
