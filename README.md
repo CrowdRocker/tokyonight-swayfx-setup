@@ -89,15 +89,17 @@ markdown# 🌃 TokyoNight Cyberpunk SwayFX Setup
 
 ### **Automated Installation**
 ```bash
-git clone https://github.com/yourusername/tokyonight-swayfx-setup.git
+git clone https://github.com/CrowdRocker/tokyonight-swayfx-setup.git
 cd tokyonight-swayfx-setup
 chmod +x install.sh
 ./install.sh
+
+
 Manual Installation
 See Manual Installation Guide below.
 📋 Manual Installation
 1. Install Base Packages
-bash# SwayFX and core components
+SwayFX and core components
 yay -S swayfx
 sudo pacman -S swayidle swaylock-effects swaybg waybar wofi dunst grim slurp wl-clipboard
 
@@ -114,8 +116,9 @@ sudo pacman -S sddm
 yay -S eww nwg-dock nwg-drawer
 sudo pacman -S btop neofetch starship playerctl
 yay -S spotify
+
 2. AMD Gaming Optimizations
-bash# AMD drivers and Vulkan
+AMD drivers and Vulkan
 sudo pacman -S mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon
 
 # Gaming performance
@@ -126,8 +129,10 @@ yay -S linux-zen linux-zen-headers
 
 # Memory optimization
 sudo pacman -S zram-generator
+
 3. Copy Configuration Files
-bash# Create config directories
+Create config directories
+
 mkdir -p ~/.config/{sway,waybar,eww,alacritty}
 mkdir -p ~/scripts ~/Pictures
 
@@ -144,8 +149,10 @@ chmod +x ~/scripts/*.sh
 
 # Copy wallpapers
 cp wallpapers/* ~/Pictures/
+
 4. Enable Services
-bash# Enable display manager
+
+Enable display manager
 sudo systemctl enable sddm
 
 # Enable Zram
@@ -153,12 +160,15 @@ sudo systemctl enable systemd-zram-setup@zram0.service
 
 # Enable user services
 systemctl --user enable pipewire pipewire-pulse
+
 5. Configure SDDM Theme
-bash# Install SugarCandy theme
+
+Install SugarCandy theme
 yay -S sddm-sugar-candy-git
 
 # Apply theme (run as root)
 sudo cp configs/sddm.conf /etc/sddm.conf
+
 6. Reboot and Select SwayFX
 bashsudo reboot
 
@@ -171,6 +181,7 @@ Window Management
 KeybindActionSuper + Arrow KeysMove focusSuper + Shift + ArrowsMove windowsSuper + FFullscreenSuper + SpaceFocus toggleSuper + Shift + SpaceFloat toggle
 Gaming
 KeybindActionSuper + F11Toggle fullscreenSuper + Alt + GLaunch with GameModePrintScreenshot selectionSuper + PrintFull screenshot
+
 🎮 Gaming Setup
 Performance Optimizations
 The setup includes several gaming optimizations:
@@ -182,7 +193,7 @@ Zram: Better memory management
 Effect toggling: Disables blur/shadows during gaming
 
 Launching Games
-bash# With all optimizations
+With all optimizations
 ~/scripts/game-launch.sh <game-command>
 
 # Or use the EWW game launcher (Super + G)
@@ -204,7 +215,7 @@ Edit the TokyoNight colors in:
 
 Effects
 Adjust performance vs visuals in ~/.config/sway/config:
-bash# Reduce for better performance
+Reduce for better performance
 blur_passes 1
 blur_radius 2
 
@@ -213,43 +224,53 @@ blur disable
 shadows disable
 Widgets
 Customize EWW widgets in ~/.config/eww/eww.yuck
+
+
 🐛 Troubleshooting
 Common Issues
+
 1. SwayFX won't start
-bash# Check logs
+Check logs
 journalctl --user -u sway
 
 # Try starting manually
 sway --debug 2>&1 | tee ~/sway-debug.log
+
 2. No sound
-bash# Restart PipeWire
+Restart PipeWire
 systemctl --user restart pipewire pipewire-pulse
+
 3. Games won't launch
-bash# Check GameMode
+Check GameMode
 gamemoded -s
 
 # Test MangoHUD
 mangohud glxgears
+
 4. High CPU usage
-bash# Disable effects temporarily
+Disable effects temporarily
 swaymsg blur disable
 swaymsg shadows disable
 
 5. EWW widgets not working
-bash# Restart EWW daemon
+Restart EWW daemon
 eww kill
 eww daemon
 eww open bar
+
 Performance Tuning
 For older hardware, try these optimizations:
+
 Disable expensive effects:
-bash# In ~/.config/sway/config
+In ~/.config/sway/config
 blur disable
 shadows disable
 default_dim_inactive 0.0
+
 Reduce Waybar updates:
-bash# In ~/.config/waybar/config
+In ~/.config/waybar/config
 "interval": 5  # Instead of 1-2 seconds
+
 📝 Contributing
 Feel free to contribute improvements, bug fixes, or new features!
 
@@ -286,10 +307,10 @@ Reddit: r/unixporn, r/swaywm
 Discord: Sway/SwayFX community servers
 
 
-<div align="center">
+
 ⭐ If you found this helpful, please consider starring the repository! ⭐
 Made with 💜 for the Linux ricing community
-</div>
+
 ```
 
 
