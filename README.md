@@ -174,13 +174,31 @@ bashsudo reboot
 
 ⌨️ Default Keybindings
 System
-KeybindActionSuper + ReturnTerminalSuper + Shift + QClose windowSuper + Shift + EExit SwayFXSuper + Shift + CReload config
+Super + Return      Terminal
+Super + Shift + Q   Close window
+Super + Shift + E   Exit SwayFX
+Super + Shift + C   Reload config
+
 Applications
-KeybindActionSuper + DApp launcherSuper + EFile managerSuper + BBrowserSuper + GGame launcherSuper + KShow keybinds
+Super + D     App launcher
+Super + E     File manager 
+Super + B     Browser
+Super + G     Game launcher
+Super + K     Show keybinds
+
 Window Management
-KeybindActionSuper + Arrow KeysMove focusSuper + Shift + ArrowsMove windowsSuper + FFullscreenSuper + SpaceFocus toggleSuper + Shift + SpaceFloat toggle
+Super + Arrow Keys       Move focus
+Super + Shift + Arrows   Move windows
+Super + F                Fullscreen
+Super + Space            Focus toggle
+Super + Shift + Space    Float toggle
+
 Gaming
-KeybindActionSuper + F11Toggle fullscreenSuper + Alt + GLaunch with GameModePrintScreenshot selectionSuper + PrintFull screenshot
+Super + F11       Toggle fullscreen
+Super + Alt + G   Launch with GameMode
+Print             Screenshot selection
+Super + Print     Full screenshot
+
 
 🎮 Gaming Setup
 Performance Optimizations
