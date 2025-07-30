@@ -164,6 +164,8 @@ install_base_packages() {
         "eww"
         "nwg-dock"
         "nwg-drawer"
+        "nwg-look"
+        "azote"
         "spotify"
         "sddm-sugar-candy-git"
     )
@@ -531,3 +533,29 @@ main() {
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         log_info "Rebooting system..."
+        sudo reboot
+    else
+        log_info "Please reboot manually to complete the setup"
+    fi
+}
+
+# Handle script interruption
+cleanup() {
+    echo
+    log_warning "Installation interrupted!"
+    log_info "You can re-run the script to continue the installation"
+    exit 1
+}
+
+# Set up signal handlers
+trap cleanup SIGINT SIGTERM
+
+# Check if script is run from correct directory
+if [[ ! -f "install.sh" ]] || [[ ! -d "configs" ]]; then
+    log_error "Please run this script from the repository root directory"
+    log_info "Usage: cd tokyonight-swayfx-setup && ./install.sh"
+    exit 1
+fi
+
+# Run main function
+main "$@"

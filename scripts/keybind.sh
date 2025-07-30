@@ -20,7 +20,9 @@ cat > "$TEMP_FILE" << 'EOF'
 │  Super + G             → Game Launcher                         │
 │  Super + B             → Browser                               │
 │  Super + K             → Show Keybinds                         │
-│                                                                 │
+│  Super + T             → nwg-look
+│  Super + W             → Azote
+│
 │ WINDOW MANAGEMENT                                               │
 │  Super + H/J/K/L       → Move Focus (Vim keys)                 │
 │  Super + Arrow Keys    → Move Focus                            │
