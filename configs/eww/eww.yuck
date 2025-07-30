@@ -1,0 +1,194 @@
+;; TokyoNight Cyberpunk EWW Configuration
+
+;; Variables
+(defvar eww "/usr/bin/eww -c $HOME/.config/eww")
+
+;; Windows
+(defwindow bar
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                     :y "0%"
+                     :width "100%"
+                     :height "40px"
+                     :anchor "top center")
+  :reserve (struts :side "top" :distance "40px")
+  (bar))
+
+(defwindow powermenu
+  :monitor 0
+  :windowtype "dialog"
+  :geometry (geometry :x "0%"
+                     :y "0%"
+                     :width "100%"
+                     :height "100%")
+  (powermenu))
+
+(defwindow game-launcher
+  :monitor 0
+  :windowtype "dialog"
+  :geometry (geometry :x "50%"
+                     :y "50%"
+                     :width "800px"
+                     :height "600px"
+                     :anchor "center")
+  (game-launcher))
+
+;; Bar widget
+(defwidget bar []
+  (centerbox :orientation "h"
+    (workspaces)
+    (middle)
+    (sidestuff)))
+
+(defwidget workspaces []
+  (box :class "workspaces"
+       :orientation "h"
+       :space-evenly true
+       :halign "start"
+       :spacing 10
+    (button :onclick "hyprctl dispatch workspace 1" "1")
+    (button :onclick "hyprctl dispatch workspace 2" "2")
+    (button :onclick "hyprctl dispatch workspace 3" "3")
+    (button :onclick "hyprctl dispatch workspace 4" "4")
+    (button :onclick "hyprctl dispatch workspace 5" "5")))
+
+(defwidget middle []
+  (box :orientation "h"
+       :space-evenly false
+       :halign "center"
+    (music)
+    (sep)
+    (time)))
+
+(defwidget sidestuff []
+  (box :class "sidestuff"
+       :orientation "h"
+       :space-evenly false
+       :halign "end"
+       :spacing 10
+    (metric :label "🔥"
+            :value {EWW_CPU.avg}
+            :onchange "")
+    (metric :label "💾"
+            :value {EWW_RAM.used_mem_perc}
+            :onchange "")
+    (systray :class "systray")
+    (button :class "keybind-btn"
+            :onclick "~/scripts/keybind.sh"
+            :tooltip "Show Keybinds"
+            "⌨️")
+    (button :class "power-btn"
+            :onclick "${eww} open --toggle powermenu"
+            "⏻")))
+
+;; Reusable widgets
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+(defwidget sep []
+  (box :class "separator" :width 20))
+
+(defwidget music []
+  (box :class "music"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+    {music != "" ? "🎵 ${music}" : ""}))
+
+(defwidget time []
+  (box :class "time"
+    {formattime(EWW_TIME, "%H:%M")}))
+
+;; Power menu
+(defwidget powermenu []
+  (box :class "powermenu"
+       :orientation "v"
+       :space-evenly false
+       :halign "center"
+       :valign "center"
+       :spacing 20
+    (box :class "power-buttons"
+         :orientation "h"
+         :space-evenly true
+         :spacing 20
+      (button :class "power-button shutdown"
+              :onclick "systemctl poweroff"
+              (box :orientation "v" :spacing 5
+                (label :text "⏻" :class "power-icon")
+                (label :text "Shutdown")))
+      (button :class "power-button restart"
+              :onclick "systemctl reboot"
+              (box :orientation "v" :spacing 5
+                (label :text "🔄" :class "power-icon")
+                (label :text "Restart")))
+      (button :class "power-button sleep"
+              :onclick "systemctl suspend"
+              (box :orientation "v" :spacing 5
+                (label :text "🌙" :class "power-icon")
+                (label :text "Sleep")))
+      (button :class "power-button logout"
+              :onclick "hyprctl dispatch exit"
+              (box :orientation "v" :spacing 5
+                (label :text "🚪" :class "power-icon")
+                (label :text "Logout"))))
+    (button :class "cancel-btn"
+            :onclick "${eww} close powermenu"
+            "Cancel")))
+
+;; Game launcher
+(defwidget game-launcher []
+  (box :class "game-launcher"
+       :orientation "v"
+       :spacing 20
+    (label :text "🎮 Game Launcher" :class "launcher-title")
+    (box :class "game-grid"
+         :orientation "v"
+         :spacing 10
+      (box :orientation "h" :spacing 10
+        (button :class "game-btn steam"
+                :onclick "steam"
+                (box :orientation "v"
+                  (label :text "🎮" :class "game-icon")
+                  (label :text "Steam")))
+        (button :class "game-btn lutris"
+                :onclick "lutris"
+                (box :orientation "v"
+                  (label :text "🍷" :class "game-icon")
+                  (label :text "Lutris")))
+        (button :class "game-btn heroic"
+                :onclick "heroic"
+                (box :orientation "v"
+                  (label :text "🏆" :class "game-icon")
+                  (label :text "Heroic"))))
+      (box :orientation "h" :spacing 10
+        (button :class "game-btn discord"
+                :onclick "discord"
+                (box :orientation "v"
+                  (label :text "💬" :class "game-icon")
+                  (label :text "Discord")))
+        (button :class "game-btn obs"
+                :onclick "obs"
+                (box :orientation "v"
+                  (label :text "📹" :class "game-icon")
+                  (label :text "OBS")))
+        (button :class "game-btn mangohud"
+                :onclick "mangohud"
+                (box :orientation "v"
+                  (label :text "📊" :class "game-icon")
+                  (label :text "MangoHUD")))))
+    (button :class "close-btn"
+            :onclick "${eww} close game-launcher"
+            "Close")))
+
+;; Poll commands
+(defpoll music :interval "2s"
+  "playerctl --ignore-player=firefox metadata --format '{{ artist }} - {{ title }}' 2>/dev/null || echo ''")

@@ -1,0 +1,239 @@
+// TokyoNight Cyberpunk Colors
+$bg: #1a1b26;
+$fg: #c0caf5;
+$blue: #7aa2f7;
+$cyan: #7dcfff;
+$green: #9ece6a;
+$magenta: #bb9af7;
+$red: #f7768e;
+$yellow: #e0af68;
+$orange: #ff9e64;
+$purple: #9d7cd8;
+
+* {
+  all: unset;
+  font-family: "JetBrains Mono Nerd Font";
+}
+
+.bar {
+  background-color: rgba(26, 27, 38, 0.9);
+  color: $fg;
+  border-bottom: 2px solid $blue;
+  backdrop-filter: blur(10px);
+}
+
+.workspaces button {
+  background-color: rgba(65, 72, 104, 0.4);
+  color: $fg;
+  border-radius: 10px;
+  padding: 8px 16px;
+  margin: 5px;
+  border: 1px solid rgba(122, 162, 247, 0.3);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(122, 162, 247, 0.3);
+    border-color: $blue;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(122, 162, 247, 0.2);
+  }
+}
+
+.metric {
+  background-color: rgba(65, 72, 104, 0.4);
+  border-radius: 10px;
+  padding: 8px 12px;
+  border: 1px solid rgba(122, 162, 247, 0.3);
+
+  .label {
+    color: $blue;
+    margin-right: 8px;
+  }
+
+  scale {
+    color: $cyan;
+
+    &:hover {
+      color: $blue;
+    }
+  }
+}
+
+.keybind-btn {
+  background-color: rgba(158, 206, 106, 0.3);
+  color: $green;
+  border-radius: 10px;
+  padding: 8px 12px;
+  border: 2px solid $green;
+  font-size: 14px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(158, 206, 106, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(158, 206, 106, 0.4);
+  }
+}
+
+.power-btn {
+  background-color: rgba(247, 118, 142, 0.3);
+  color: $red;
+  border-radius: 50%;
+  padding: 10px;
+  border: 2px solid $red;
+  font-size: 14px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(247, 118, 142, 0.5);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(247, 118, 142, 0.5);
+  }
+}
+
+.powermenu {
+  background-color: rgba(26, 27, 38, 0.95);
+  backdrop-filter: blur(20px);
+
+  .power-buttons {
+    .power-button {
+      background: linear-gradient(145deg, rgba(65, 72, 104, 0.3), rgba(65, 72, 104, 0.1));
+      border-radius: 20px;
+      padding: 30px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+
+      .power-icon {
+        font-size: 48px;
+        margin-bottom: 10px;
+      }
+
+      &.shutdown {
+        border-color: $red;
+        color: $red;
+        &:hover {
+          background: rgba(247, 118, 142, 0.2);
+          transform: scale(1.1);
+          box-shadow: 0 0 20px rgba(247, 118, 142, 0.3);
+        }
+      }
+
+      &.restart {
+        border-color: $orange;
+        color: $orange;
+        &:hover {
+          background: rgba(255, 158, 100, 0.2);
+          transform: scale(1.1);
+          box-shadow: 0 0 20px rgba(255, 158, 100, 0.3);
+        }
+      }
+
+      &.sleep {
+        border-color: $purple;
+        color: $purple;
+        &:hover {
+          background: rgba(157, 124, 216, 0.2);
+          transform: scale(1.1);
+          box-shadow: 0 0 20px rgba(157, 124, 216, 0.3);
+        }
+      }
+
+      &.logout {
+        border-color: $blue;
+        color: $blue;
+        &:hover {
+          background: rgba(122, 162, 247, 0.2);
+          transform: scale(1.1);
+          box-shadow: 0 0 20px rgba(122, 162, 247, 0.3);
+        }
+      }
+    }
+  }
+
+  .cancel-btn {
+    background-color: rgba(65, 72, 104, 0.4);
+    color: $fg;
+    padding: 15px 30px;
+    border-radius: 10px;
+    border: 1px solid rgba(192, 202, 245, 0.3);
+
+    &:hover {
+      background-color: rgba(65, 72, 104, 0.6);
+    }
+  }
+}
+
+.game-launcher {
+  background-color: rgba(26, 27, 38, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 30px;
+  border: 2px solid $blue;
+
+  .launcher-title {
+    font-size: 24px;
+    color: $blue;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .game-grid {
+    .game-btn {
+      background: linear-gradient(145deg, rgba(65, 72, 104, 0.3), rgba(65, 72, 104, 0.1));
+      border-radius: 15px;
+      padding: 20px;
+      border: 2px solid rgba(122, 162, 247, 0.3);
+      transition: all 0.3s ease;
+      min-width: 120px;
+
+      .game-icon {
+        font-size: 32px;
+        margin-bottom: 8px;
+      }
+
+      &:hover {
+        background: rgba(122, 162, 247, 0.2);
+        border-color: $blue;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(122, 162, 247, 0.3);
+      }
+
+      &.steam { &:hover { border-color: $blue; } }
+      &.lutris { &:hover { border-color: $orange; } }
+      &.heroic { &:hover { border-color: $yellow; } }
+      &.discord { &:hover { border-color: $purple; } }
+      &.obs { &:hover { border-color: $red; } }
+      &.mangohud { &:hover { border-color: $green; } }
+    }
+  }
+
+  .close-btn {
+    background-color: rgba(65, 72, 104, 0.4);
+    color: $fg;
+    padding: 15px 30px;
+    border-radius: 10px;
+    border: 1px solid rgba(192, 202, 245, 0.3);
+    margin-top: 20px;
+
+    &:hover {
+      background-color: rgba(65, 72, 104, 0.6);
+    }
+  }
+}
+
+.music {
+  background-color: rgba(65, 72, 104, 0.4);
+  border-radius: 10px;
+  padding: 8px 16px;
+  border: 1px solid rgba(187, 154, 247, 0.3);
+  color: $magenta;
+}
+
+.time {
+  background-color: rgba(65, 72, 104, 0.4);
+  border-radius: 10px;
+  padding: 8px 16px;
+  border: 1px solid rgba(125, 207, 255, 0.3);
+  color: $cyan;
+  font-weight: bold;
+}

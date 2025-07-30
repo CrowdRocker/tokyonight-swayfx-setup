@@ -1,0 +1,173 @@
+# TokyoNight Cyberpunk SwayFX Config
+# Optimized for i5-4430 performance
+
+# Variables
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term alacritty
+set $menu nwg-drawer
+
+# Colors (TokyoNight)
+set $bg #1a1b26
+set $fg #c0caf5
+set $blue #7aa2f7
+set $cyan #7dcfff
+set $green #9ece6a
+set $magenta #bb9af7
+set $red #f7768e
+set $yellow #e0af68
+set $orange #ff9e64
+set $purple #9d7cd8
+
+# Output configuration
+output * bg ~/Pictures/tokyonight-cyberpunk.jpg fill
+
+# SwayFX Effects (Optimized for performance)
+blur enable
+blur_xray enable
+blur_passes 2
+blur_radius 3
+layer_effects "waybar" blur enable; shadows enable; corner_radius 10
+layer_effects "wofi" blur enable; shadows enable; corner_radius 15
+layer_effects "notifications" blur enable; shadows enable; corner_radius 10
+
+# Shadows (lightweight)
+shadows enable
+shadows_on_csd enable
+shadow_blur_radius 15
+shadow_color #000000cc
+
+# Corner radius
+corner_radius 10
+
+# Window borders
+default_border pixel 2
+default_floating_border pixel 2
+hide_edge_borders smart
+
+# Gaps
+gaps inner 8
+gaps outer 5
+
+# Colors                border   bg       text     indicator child_border
+client.focused          $blue    $blue    $fg      $cyan     $blue
+client.focused_inactive $purple  $bg      $fg      $purple   $purple
+client.unfocused        #414868  $bg      $fg      #414868   #414868
+client.urgent           $red     $red     $bg      $red      $red
+
+# Key bindings
+# Basics
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec $menu
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -b 'Yes' 'swaymsg exit'
+
+# Custom bindings
+bindsym $mod+e exec thunar
+bindsym $mod+b exec firefox
+bindsym $mod+g exec eww open --toggle game-launcher
+bindsym $mod+k exec ~/scripts/keybind.sh
+
+# Screenshots
+bindsym Print exec grim -g "$(slurp)" - | wl-copy
+bindsym $mod+Print exec grim - | wl-copy
+
+# Gaming
+bindsym $mod+F11 fullscreen toggle
+bindsym $mod+Alt+g exec ~/scripts/game-launch.sh
+
+# Audio
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Moving around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move windows
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Workspaces
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+
+# Move to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+
+# Layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+x layout toggle split
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# Resize mode
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Window rules for performance
+for_window [app_id="steam"] floating enable
+for_window [class="steam"] floating enable
+for_window [app_id="lutris"] floating enable
+for_window [class="lutris"] floating enable
+
+# Gaming optimizations
+for_window [class="steam_app_.*"] fullscreen enable
+for_window [app_id="gamescope"] fullscreen enable
+
+# Idle configuration
+exec swayidle -w \
+    timeout 300 'swaylock-effects -f --clock --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x3 --effect-vignette 0.5:0.5 --ring-color 7aa2f7 --key-hl-color 9ece6a --line-color 00000000 --inside-color 1a1b2688 --separator-color 00000000 --grace 2 --fade-in 0.2' \
+    timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock-effects -f --clock --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x3 --effect-vignette 0.5:0.5 --ring-color 7aa2f7 --key-hl-color 9ece6a --line-color 00000000 --inside-color 1a1b2688 --separator-color 00000000 --grace 2 --fade-in 0.2'
+
+# Auto-start applications
+exec eww daemon
+exec nwg-dock -d
+exec dunst
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Status bar
+bar {
+    swaybar_command waybar
+}

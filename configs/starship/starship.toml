@@ -1,0 +1,30 @@
+format = """
+[┌─\\[](bold blue)$username$hostname[\\]](bold blue) $directory$git_branch$git_status
+[└─$](bold blue)$character"""
+
+[username]
+show_always = true
+style_user = "bold cyan"
+style_root = "bold red"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = false
+format = "@[$hostname](bold magenta)"
+
+[directory]
+truncation_length = 3
+format = " [$path]($style)[$lock_symbol]($lock_style) "
+style = "bold yellow"
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+style = "bold green"
+
+[git_status]
+format = "[$all_status$ahead_behind]($style) "
+style = "bold red"
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"

@@ -1,0 +1,28 @@
+# Performance optimizations for older hardware
+# Reduce effects for better performance
+blur_passes 2
+blur_radius 3
+
+# Disable some effects on older hardware if needed
+# blur disable
+# shadows disable
+
+# Reduce animation complexity
+default_dim_inactive 0.0
+
+# Memory optimizations
+focus_follows_mouse no
+mouse_warping output
+
+# Gaming performance
+for_window [class="steam_app_.*"] {
+    blur disable
+    shadows disable
+    border none
+}
+
+for_window [app_id="gamescope"] {
+    blur disable
+    shadows disable
+    border none
+}
